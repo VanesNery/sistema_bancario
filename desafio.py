@@ -34,14 +34,16 @@ while True:
         while valor > limite:
             print(f'Valor não permitido para saque, o limite para saque nesse momento é de R$ {limite}')
             valor = float(input('Favor insera o valor que deseja sacar R$ '))
-            if valor <= saldo:
-                saldo -= valor
-                extrato.append(f'{data} {operacao} R${valor}')
-                print(f"Seu valor R${valor} foi realizado o {operacao} com sucesso")
-            else:
-                print('Seu saldo é menor que solicitado para {operacao}')
+        if valor <= saldo:
+            saldo -= valor
+            extrato.append(f'{data} {operacao} R${valor}')
+            print(f"Seu valor R${valor} foi realizado o {operacao} com sucesso")
+        else:
+            print('Seu saldo é menor que solicitado para {operacao}')
     elif opcao == "e":
-        print(extrato)
+        operacao = 'Extrato'
+        for registro in extrato:
+            print(registro)
     elif opcao == "q":
         break
     else:
