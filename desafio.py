@@ -1,5 +1,7 @@
 from datetime import datetime
 from deposito import deposito
+from extrato import extrat
+from saque import saque
 
 
 menu = """
@@ -13,7 +15,6 @@ saldo = 0
 numero_saques = 0
 limite = 500
 extrato = []
-LIMITE_SAQUES = 3
 
 while True:
     opcao = input(menu).casefold()
@@ -23,23 +24,16 @@ while True:
     if opcao == "d":
         operacao = 'Deposito'
         valor = float(input('Favor insera o valor que deseja depositar R$ '))
-        deposito(data, operacao, extrato, saldo, valor)
+        saldo_final = deposito(data, operacao, saldo, extrato, valor)
+        saldo = saldo_final
     elif opcao == "s":
         operacao = 'Saque'
         valor = float(input('Favor insera o valor que deseja sacar R$ '))
-        while valor > limite:
-            print(f'Valor não permitido para saque, o limite para saque nesse momento é de R$ {limite}')
-            valor = float(input('Favor insera o valor que deseja sacar R$ '))
-        if valor <= saldo:
-            saldo -= valor
-            extrato.append(f'{data} {operacao} R${valor}')
-            print(f"Seu valor R${valor} foi realizado o {operacao} com sucesso")
-        else:
-            print('Seu saldo é menor que solicitado para {operacao}')
+        saldo_final, numero = saque(valor, limite, saldo, data, extrato, numero_saques, operacao)
+        saldo = saldo_final
+        numero_saques = numero
     elif opcao == "e":
-        operacao = 'Extrato'
-        for registro in extrato:
-            print(registro)
+        extrat(extrato, saldo)
     elif opcao == "q":
         break
     else:
