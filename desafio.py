@@ -1,4 +1,5 @@
 from datetime import datetime
+from deposito import deposito
 
 
 menu = """
@@ -22,12 +23,7 @@ while True:
     if opcao == "d":
         operacao = 'Deposito'
         valor = float(input('Favor insera o valor que deseja depositar R$ '))
-        while valor <=0:
-            print('Esse valor não é permitido, favor insera um valor positivo.')
-            valor = float(input('Favor insera o valor que deseja depositar R$ '))
-        saldo += valor
-        extrato.append(f'{data} {operacao} R${valor}')
-        print(f"Seu valor R${valor} foi realizado o {operacao} com sucesso")
+        deposito(data, operacao, extrato, saldo, valor)
     elif opcao == "s":
         operacao = 'Saque'
         valor = float(input('Favor insera o valor que deseja sacar R$ '))
