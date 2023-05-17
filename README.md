@@ -1,5 +1,4 @@
-# sistema_bancario
-Sistema Bancário com Python
+# Sistema Bancário com Python
 
 O curso de criando um sistema bancario, foi proposto um desafio para fazer um sistema bancario com Python.
 Neste desafio você deverá implementar três operações: depósito, saque e extrato para um banco que deseja monetizar suas operações em Python
